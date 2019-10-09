@@ -24,6 +24,7 @@ This is the service to CRUD the employee. Only a POC.
 
 ## Setup
 From a terminal, open on the root of the project
+
 ---
     git clone https://github.com/TiagoMarquesTR/employee.git
     cd employee
