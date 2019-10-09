@@ -2,6 +2,11 @@ plugins {
 	id 'org.springframework.boot' version '2.1.9.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'application'
+}
+
+application {
+    mainClassName = 'br.com.tr.employee.EmployeeApplication'
 }
 
 group = 'br.com.tr'
