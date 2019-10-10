@@ -1,0 +1,32 @@
+version: '3'
+services:
+    postgress-db:
+        image: postgres
+        container_name: "employee-db"
+        environment:
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=employee
+        networks: 
+            - network-backend
+
+    # App backend service
+    app-server:
+      # Configuration for building the docker image for the backend service
+      build:
+        context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+      restart: always
+      depends_on: 
+        - postgress-db # This service depends on mysql. Start that first.
+      environment: # Pass environment variables to the service
+        SPRING_DATASOURCE_URL: jdbc:postgresql://postgress-db:5432/employee
+        SPRING_DATASOURCE_USERNAME: postgres
+        SPRING_DATASOURCE_PASSWORD: password
+      networks: # Networks to join (Services on the same network can communicate with each other using their name)
+        - network-backend
+networks: 
+    network-backend:
+        driver: bridge
