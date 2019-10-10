@@ -1,24 +1,31 @@
 package br.com.tr.employee.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Client {
 
     @Id
-    private UUID client_id; 
+    @GeneratedValue(generator = "uuid2")
+    private UUID id;
     private String name;
 
-    public UUID getClient_id() {
-        return client_id;
+    public Client() {
     }
 
-    public void setClient_id(UUID client_id) {
-        this.client_id = client_id;
+    public Client(String name) {
+        this.name = name;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
