@@ -7,6 +7,7 @@ CREATE TABLE rubric(
 	consists_net_pay CHAR,
 	inss_base CHAR,
 	fgts_base CHAR,
+	irrf_base CHAR,
 	overtime_base CHAR,
 	calculation_base INTEGER,
 	rate DECIMAL,
