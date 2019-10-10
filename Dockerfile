@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:8-jre-alpine
 RUN mkdir /opt/apps
 WORKDIR /opt/apps/
 COPY build/libs/employee-0.0.1-SNAPSHOT.jar   .
