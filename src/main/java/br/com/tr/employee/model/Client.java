@@ -1,7 +1,5 @@
 package br.com.tr.employee.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import java.util.UUID;
 import javax.persistence.*;
 

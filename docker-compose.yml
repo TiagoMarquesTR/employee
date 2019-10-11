@@ -1,13 +1,16 @@
 version: '3'
+
+# Define services
 services:
+    # Database Service (Postgre)
     postgress-db:
-        image: postgres
-        container_name: "employee-db"
-        environment:
+        image: postgres:alpine
+        container_name: "postgres-employee-db"
+        environment: # Pass environment variables to the service
             - POSTGRES_PASSWORD=password
             - POSTGRES_USER=postgres
             - POSTGRES_DB=employee
-        networks: 
+        networks: # Networks to join (Services on the same network can communicate with each other using their name)
             - network-backend
 
     # App backend service
@@ -20,7 +23,7 @@ services:
         - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
       restart: always
       depends_on: 
-        - postgress-db # This service depends on mysql. Start that first.
+        - postgress-db # This service depends on postgre. Start that first.
       environment: # Pass environment variables to the service
         SPRING_DATASOURCE_URL: jdbc:postgresql://postgress-db:5432/employee
         SPRING_DATASOURCE_USERNAME: postgres

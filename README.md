@@ -24,12 +24,27 @@ This is the service to CRUD the employee. Only a POC.
 * [Postman](https://www.getpostman.com/downloads/)
 * [Docker](https://www.docker.com/products/docker-desktop) optional
 
-## Setup
+## Step-by-step to run the application locally
 From a terminal, open on the root of the project
 
+This is to run the database:
+```
+docker run --name employee-db -e POSTGRESS_PASSWORD=password -d -p 5432:5432 postgres:alpine
+docker exec -it container_id bash //Type docker ps in the terminal e get the container id of the image postgres:alpine
+psql -U postgres
+create database employee;
+exit
+exit
+```
+This is to have the o project from GitHub:
 ```
 git clone https://github.com/TiagoMarquesTR/employee.git
 cd employee
+```
+
+Now is only run and test
+```
+.\gradlew clean flywayMigrate -i build run
 ```
 
 ## Build
@@ -49,6 +64,7 @@ cd employee
 ```
 .\gradlew clean build run
 ```
+
 ## Start Database in Docker
 This is a option for running database locally:
 
@@ -76,4 +92,17 @@ To create the extension to generate uuid:
 
 ```
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+```
+
+## Docker Compose
+This option is to run the containners in the network
+
+```
+docker-compose build
+docker-compose up
+```
+
+to shutdown exec:
+```
+docker-compose down
 ```
