@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +67,16 @@ public class RubricController {
 		}
 				
 		return ResponseEntity.notFound().build();		
+	}
+
+	@PutMapping
+	public ResponseEntity<RubricDto> update(@RequestBody @Valid RubricDto rubricDto, UriComponentsBuilder uriBuilder){
+		Rubric rubric = new Rubric(rubricDto);
+		rubricRepository.save(rubric);
+		
+		URI uri = uriBuilder.path("/vi/rubric/{id}").buildAndExpand(rubric.getRubricId()).toUri();
+		
+		return ResponseEntity.created(uri).body(new RubricDto(rubric));
 	}
 
 }
