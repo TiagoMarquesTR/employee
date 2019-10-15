@@ -15,10 +15,11 @@ services:
 
     # App backend service
     app-server:
+      image: tiagobm564/poc-employee-service
       # Configuration for building the docker image for the backend service
-      build:
-        context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
-        dockerfile: Dockerfile
+      # build:
+      #  context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      #  dockerfile: Dockerfile
       ports:
         - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
       restart: always
